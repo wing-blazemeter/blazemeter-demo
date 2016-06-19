@@ -37,7 +37,7 @@
 <div class="jumbotron">
     <div class="container">
         <h1>Welcome to the Simple Travel Agency!</h1>
-        <p>The is a sample site you can test with BlazMeter! </p>
+        <p>The is a sample site you can test with BlazeMeter! </p>
         <p>Check out our <a href="vacation.html">destination of the week! The Beach!</a></p>
     </div>
 </div>
