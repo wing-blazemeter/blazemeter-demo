@@ -42,6 +42,8 @@
     </div>
 </div>
 
+<?php usleep(40000); ?>
+
 <div class="container">
 
     <h2>Choose your departure city:</h2>
