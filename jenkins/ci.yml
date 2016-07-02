@@ -1,0 +1,20 @@
+---
+modules:
+  blazemeter:
+    token: 0b203f0b4cf4ee6abf99
+
+reporting:
+  - module: blazemeter
+    test: BlazeDemo-109-ci
+
+execution:
+  concurrency: 2
+  ramp-up:  10s
+  hold-for: 1m
+
+  scenario:
+    think-time: 0.5s
+    requests:
+      - http://52.59.243.109/blazedemo/
+      - http://52.59.243.109/blazedemo/vacation.html
+
