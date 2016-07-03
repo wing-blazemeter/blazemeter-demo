@@ -44,7 +44,8 @@
     $price = $_POST['price'];
     $tax = 514.76;
     $total = $price + $tax;
-    ?>
+?>
+
 <h2>Your flight from <?php echo $fromPort; ?> to <?php echo $toPort; ?> has been reserved.</h2>
     <p>Airline: <?php echo $airline ?></p>
     <p>Flight Number: <?php echo $flight ?></p>
