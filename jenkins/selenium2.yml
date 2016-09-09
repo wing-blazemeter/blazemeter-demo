@@ -4,5 +4,5 @@ execution:
   concurrency: 3
   ramp-up: 30s
   hold-for: 2m
-  scenario: selenium1.py
+  scenario: selenium2.py
 
