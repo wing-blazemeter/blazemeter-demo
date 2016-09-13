@@ -3,6 +3,7 @@ execution:
 - executor: selenium
   scenario: simple
   hold-for: 3m
+  concurrency: 3
 
 scenarios:
   simple:
