@@ -16,3 +16,7 @@ modules:
     selenium-tools:
       nose:
         working-dir: work
+
+modules:
+  cloud:
+    test: Selenium Cloud Test
