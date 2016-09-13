@@ -1,3 +1,4 @@
-module:
+---
+modules:
   cloud:
     token:6101a4123225344c45f3
