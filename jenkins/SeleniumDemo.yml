@@ -2,7 +2,7 @@
 execution:
 - executor: selenium
   scenario: simple
-  hold-for: 3m
+  hold-for: 4m
 
 scenarios:
   simple:
