@@ -1,0 +1,18 @@
+---
+execution:
+- executor: selenium
+  scenario: simple
+  hold-for: 3m
+
+scenarios:
+  simple:
+    script: SeleniumDemo.py
+
+modules:
+  selenium:
+    virtual-display:
+      width: 1024
+      height: 768
+    selenium-tools:
+      nose:
+        working-dir: work
