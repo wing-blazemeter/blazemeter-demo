@@ -8,7 +8,7 @@ reporting:
     test: Taurus Demo
 
 execution:
-  concurrency: 200
+  concurrency: 300
   ramp-up: 2m
   hold-for: 5m
 
