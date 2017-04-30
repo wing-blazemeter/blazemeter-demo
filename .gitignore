@@ -1,3 +1,9 @@
+#Env
+.env
+
+#Taurus output
+artifacts
+
 # Logs
 logs
 *.log
