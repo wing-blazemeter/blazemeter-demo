@@ -1,9 +1,0 @@
----
-settings:
-  check-interval: 5
-
-modules:
-  blazemeter:
-    browser-open: false
-  console:
-    disable: true
