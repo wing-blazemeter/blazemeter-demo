@@ -47,7 +47,7 @@
     <h2>Choose your departure city:</h2>
     <form action="reserve.php" method="post">
         <select name="fromPort" class="form-inline">
-            <option value="Paris">New York City</option>
+            <option value="New York City">New York City</option>
             <option value="Paris">Paris</option>
             <option value="Philadelphia">Philadelphia</option>
             <option value="Boston">Boston</option>
