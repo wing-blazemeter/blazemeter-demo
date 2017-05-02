@@ -4,6 +4,8 @@ Simple App to Test BlazeMeter Jenkins Integration
 # For OSX Users
 Follow [this guide](https://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-macos-sierra/) to set up Apache, MySql, and PHP (AMP stack).
 
+Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line.
+
 Once complete, the app will be available at e.g. http://localhost/~David/blazemeter-demo/app/
 
 Or, if you prefer, you can simply ``make app`` to run the app inside a Docker container.

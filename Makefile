@@ -19,5 +19,5 @@ app:
 	-f Dockerfile.app \
 	-t $(APP_IMAGE_TAG) . \
 	&& docker run \
-	-p 80:80 \
+	-p 8888:80 \
 	$(APP_IMAGE_TAG)
