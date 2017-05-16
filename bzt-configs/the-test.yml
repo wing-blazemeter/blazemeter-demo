@@ -1,0 +1,60 @@
+---
+execution:
+  scenario: blazemeter-test
+  concurrency: 5
+  ramp-up: 5s
+  hold-for: 20s
+
+# put pass-fail criteria below in separate yml file if you wish
+reporting:
+- module: blazemeter
+  test: blazemeter-demo
+  project: blazemeter-demo
+- module: final-stats
+  dump-xml: /tmp/artifacts/results.xml
+- module: passfail
+  criteria:
+  - avg-rt of Reservation>5000ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1000ms to succeed
+  - fail of Confirmation>50% for 10s, stop as failed
+
+scenarios:
+  blazemeter-test:
+    default-address: "http://blaze-app:80"  # http request defaults scheme, domain, port
+    headers:
+      Upgrade-Insecure-Requests: '1'
+      User-Agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'
+      Accept-Language: 'en-US,en;q=0.8,es;q=0.6'
+    requests:
+      - url: /
+        method: GET
+        label: 'Home'
+      - url: /reserve.php
+        method: POST
+        label: 'Reservation'
+        body:
+          fromPort: Portland
+          toPort: New York
+      - url: /purchase.php
+        method: POST
+        label: 'Purchase'
+        body:
+          airline: Lufthansa
+          flight: '4346'
+          fromPort: Portland
+          price: '233.98'
+          toPort: New York
+      - url: confirmation.php
+        method: POST
+        label: 'Confirmation'
+        body:
+          _token: ''
+          address: '1234'
+          cardType: visa
+          city: Palo Alto
+          creditCardMonth: '11'
+          creditCardNumber: '8798789749898987'
+          creditCardYear: '2017'
+          inputName: 'Fred Smertz'
+          nameOnCard: 'Fred Smertz'
+          state: California
+          zipCode: '94070'

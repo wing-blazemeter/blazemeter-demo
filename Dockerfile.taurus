@@ -1,3 +1,4 @@
-FROM undera/taurus:1.9.1
+FROM undera/taurus:1.9.2
 
 COPY bzt-configs /bzt-configs/
+COPY .bzt-rc /root/

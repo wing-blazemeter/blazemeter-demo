@@ -1,8 +1,12 @@
 #Env
 .env
 
-#Taurus output
+#Jenkins Home
+jenkins_home
+
+#Taurus stuff
 artifacts
+.bzt-rc
 
 # Logs
 logs
