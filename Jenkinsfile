@@ -1,9 +1,31 @@
 pipeline {
   agent any
   stages {
-    stage('Hello') {
+    stage('Pre Clean') {
       steps {
-        echo 'Hello'
+        sh 'docker stop $(docker ps -q --filter ancestor="blazemeter-demo-app") || true'
+      }
+    }
+    stage('Run App') {
+      steps {
+        sh '''docker build \
+-f Dockerfile.app \
+-t blaze-app . \
+&& docker run \
+-p 8888:80 \
+--name=blaze-app \
+--network=blazemeter-demo \
+blaze-app'''
+      }
+    }
+    stage('Sleep') {
+      steps {
+        sleep 60
+      }
+    }
+    stage('Post Clean') {
+      steps {
+        sh 'docker stop $(docker ps -q --filter ancestor="blazemeter-demo-app") || true'
       }
     }
   }
