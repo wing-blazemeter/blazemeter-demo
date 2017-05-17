@@ -1,21 +1,18 @@
 ---
 execution:
   scenario: blazemeter-test
-  concurrency: 5
-  ramp-up: 5s
-  hold-for: 20s
+  concurrency: 10
+  ramp-up: 10s
+  hold-for: 30s
 
 # put pass-fail criteria below in separate yml file if you wish
 reporting:
-- module: blazemeter
-  test: blazemeter-demo
-  project: blazemeter-demo
 - module: final-stats
   dump-xml: /tmp/artifacts/results.xml
 - module: passfail
   criteria:
-  - avg-rt of Reservation>5000ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1000ms to succeed
-  - fail of Confirmation>50% for 10s, stop as failed
+  - avg-rt of Reservation>2000ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1000ms to succeed
+  - fail of Confirmation>20% for 10s, stop as failed
 
 scenarios:
   blazemeter-test:
