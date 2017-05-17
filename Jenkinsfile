@@ -11,9 +11,16 @@ pipeline {
         sh 'docker build -f Dockerfile.app -t blaze-app . && docker run -d -p 8888:80 --name=blaze-app --network=blazemeter-demo blaze-app'
       }
     }
-    stage('Sleep') {
+    stage('Run Perf') {
       steps {
-        sleep 20
+        sh '''docker build \
+-f Dockerfile.taurus \
+-t bzt . \
+&& docker run \
+-v ./artifacts:/tmp/artifacts/ \
+--network=blazemeter-demo \
+bzt \
+/bzt-configs/the-test.yml -report'''
       }
     }
     stage('Post Clean') {
