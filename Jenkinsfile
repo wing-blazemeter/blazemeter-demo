@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run Perf') {
       steps {
-        sh 'make env && make bzt'
+        sh 'make bzt'
       }
     }
   }
