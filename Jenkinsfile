@@ -11,10 +11,10 @@ pipeline {
         sh 'make env && make bzt'
       }
     }
-    post {
-      always {
-        sh 'make clean'
-      }
+  }
+  post {
+    always {
+      sh 'make clean'
     }
   }
 }
