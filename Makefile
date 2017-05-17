@@ -11,6 +11,7 @@ app:
 	-f Dockerfile.app \
 	-t blaze-app . \
 	&& docker run \
+	-d \
 	-p 8888:80 \
 	--name=blaze-app \
 	--network=blazemeter-demo \
