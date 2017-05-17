@@ -1,8 +1,5 @@
 .PHONY: app
 
-env:
-	export TAURUS_ARTIFACTS_VOLUME=/Users/David/Sites/blazemeter-demo/artifacts
-
 network:
 	docker network create blazemeter-demo || true
 
@@ -17,16 +14,14 @@ app:
 	--network=blazemeter-demo \
 	blaze-app
 
-#replace absolute path below with your path
 bzt:
 	docker build \
 	-f Dockerfile.taurus \
 	-t bzt . \
 	&& docker run \
-	-v ${BZT_ARTIFACTS_VOLUME}:/tmp/artifacts/ \
+	-v $(PWD)/artifacts:/tmp/artifacts/ \
 	--network=blazemeter-demo \
-	bzt \
-	/bzt-configs/the-test.yml -report
+	bzt /bzt-configs/the-test.yml -report
 
 jenkins:
 	docker build \
@@ -41,4 +36,4 @@ jenkins:
 	jenkins
 
 clean:
-	docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true
+	docker rm $$(docker stop $$(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true
