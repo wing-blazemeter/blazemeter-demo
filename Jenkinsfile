@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Sleep') {
       steps {
-        sleep 60
+        sleep 20
       }
     }
     stage('Post Clean') {
