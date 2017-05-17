@@ -21,6 +21,5 @@ When finished, run ``make clean`` to stop the app and remove stopped containers.
 
 # CI/CD with Jenkins Pipeline
 1. Run Jenkins via ``make jenkins`` (be sure to ``make network`` first if you haven't done this already)
-2. Install the Performance Plugin (required) and the Blue Ocean Plugin (optional)
-3. Create a MultiBranch Pipeline that points to this repo
-4. Build! For more details, see ``Jenkinsfile`` in the project root directory.
+2. Create a MultiBranch Pipeline that points to this repo
+3. Build! For more details, see ``Jenkinsfile`` in the project root directory.

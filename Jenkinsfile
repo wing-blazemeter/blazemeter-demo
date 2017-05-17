@@ -9,6 +9,7 @@ pipeline {
     stage('Run Perf') {
       steps {
         sh 'make bzt'
+        perfReport 'artifacts/result.xml'
       }
     }
   }

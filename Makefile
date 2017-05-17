@@ -21,7 +21,7 @@ bzt:
 	&& docker run \
 	-v $(PWD)/artifacts:/tmp/artifacts/ \
 	--network=blazemeter-demo \
-	bzt /bzt-configs/simple-test.yml -report
+	bzt /bzt-configs/the-test.yml -report
 
 jenkins:
 	docker build \
