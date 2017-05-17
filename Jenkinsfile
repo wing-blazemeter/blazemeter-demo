@@ -3,29 +3,22 @@ pipeline {
   stages {
     stage('Pre Clean') {
       steps {
-        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true'
+        sh 'make clean'
       }
     }
     stage('Run App') {
       steps {
-        sh 'docker build -f Dockerfile.app -t blaze-app . && docker run -d -p 8888:80 --name=blaze-app --network=blazemeter-demo blaze-app'
+        sh 'make app'
       }
     }
     stage('Run Perf') {
       steps {
-        sh '''docker build \
--f Dockerfile.taurus \
--t bzt . \
-&& docker run \
--v ./artifacts:/tmp/artifacts/ \
---network=blazemeter-demo \
-bzt \
-/bzt-configs/the-test.yml -report'''
+        sh 'make env && make perf'
       }
     }
     stage('Post Clean') {
       steps {
-        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true'
+        sh 'make clean'
       }
     }
   }
