@@ -8,7 +8,12 @@ pipeline {
     }
     stage('Run Perf Tests') {
       steps {
+        sh 'pwd && ls'
+        sh 'mkdir artifacts'
+        sh 'pwd && ls'
         sh 'make bzt'
+        sh 'pwd && ls'
+        sh 'cd artifacts && ls'
       }
     }
     stage('Publish Test Results') {
