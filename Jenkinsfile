@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Pre Clean') {
       steps {
-        sh 'docker stop $(docker ps -q --filter ancestor="blaze-app") || true'
+        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true'
       }
     }
     stage('Run App') {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Post Clean') {
       steps {
-        sh 'docker stop $(docker ps -q --filter ancestor="blaze-app") || true'
+        sh 'docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true'
       }
     }
   }
