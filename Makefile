@@ -11,28 +11,32 @@ network:
 app:
 	docker build \
 	-f Dockerfile.app \
-	-t $(APP_IMAGE_TAG) . \
+	-t blaze-app . \
 	&& docker run \
 	-p 8888:80 \
 	--name=blaze-app \
 	--network=blazemeter-demo \
-	$(APP_IMAGE_TAG)
+	blaze-app
 
+#replace absolute path below with your path
 bzt:
 	docker build \
 	-f Dockerfile.taurus \
-	-t $(BZT_IMAGE_TAG) . \
+	-t bzt . \
 	&& docker run \
-	-v $(BZT_ARTIFACTS_PATH):/tmp/artifacts/ \
+	-v /Users/David/Sites/blazemeter-demo/artifacts:/tmp/artifacts/ \
 	--network=blazemeter-demo \
-	$(BZT_IMAGE_TAG) \
-	$(BZT_COMMAND) -report
+	bzt \
+	/bzt-configs/the-test.yml -report
 
 jenkins:
-	docker run \
-	--name=jenkins-blue-ocean \
-	--rm \
+	docker build \
+	-f Dockerfile.jenkins \
+	-t jenkins . \
+	&& docker run \
+	--name=jenkins \
 	--publish 8080:8080 \
 	--volume $(PWD)/jenkins_home:/var/jenkins_home \
+	--volume /var/run/docker.sock:/var/run/docker.sock \
 	--network=blazemeter-demo \
-	jenkinsci/blueocean:1.0.1
+	jenkins

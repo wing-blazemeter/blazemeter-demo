@@ -1,14 +1,14 @@
 # blazemeter-demo
-Simple App to Test BlazeMeter Jenkins Integration
+Simple App to test CI/CD with Blazemeter Taurus & Jenkins Pipeline
 
-# For OSX Users
+# Run the App
+## Traditional Approach (OSX)
 Follow [this guide](https://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-macos-sierra/) to set up Apache, MySql, and PHP (AMP stack).
-
-Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line.
 
 Once complete, the app will be available at e.g. http://localhost/~David/blazemeter-demo/app/
 
-Or, if you prefer, you can simply ``make app`` to run the app inside a Docker container.
+## Docker Approach
+From the project directory, ``make app`` to run the app inside a Docker container at http://localhost:8888.
 
-# CI/CD and Docker Integration
-See ``Makefile``. Create an ``.env`` file in your workspace as per the provided ``.env.sample`` in order to use ``make`` targets.
+# Install Taurus
+Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line.
