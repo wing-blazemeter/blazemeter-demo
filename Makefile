@@ -38,3 +38,6 @@ jenkins:
 	--volume /var/run/docker.sock:/var/run/docker.sock \
 	--network=blazemeter-demo \
 	jenkins
+
+clean:
+	docker rm $(docker stop $(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true
