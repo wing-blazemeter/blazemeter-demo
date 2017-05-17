@@ -1,11 +1,6 @@
 pipeline {
   agent any
   stages {
-    stage('Pre Clean') {
-      steps {
-        sh 'make clean'
-      }
-    }
     stage('Run App') {
       steps {
         sh 'make app'
@@ -16,8 +11,8 @@ pipeline {
         sh 'make env && make perf'
       }
     }
-    stage('Post Clean') {
-      steps {
+    post {
+      always {
         sh 'make clean'
       }
     }
