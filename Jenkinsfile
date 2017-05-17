@@ -8,14 +8,7 @@ pipeline {
     }
     stage('Run App') {
       steps {
-        sh '''docker build \
--f Dockerfile.app \
--t blaze-app . \
-&& docker run \
--p 8888:80 \
---name=blaze-app \
---network=blazemeter-demo \
-blaze-app'''
+        sh 'docker build -f Dockerfile.app -t blaze-app . && docker run -d -p 8888:80 --name=blaze-app --network=blazemeter-demo blaze-app'
       }
     }
     stage('Sleep') {
