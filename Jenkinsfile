@@ -13,7 +13,8 @@ pipeline {
     }
     stage('Publish Test Results') {
       steps {
-        performanceReport compareBuildPrevious: false, configType: '', errorFailedThreshold: -1, errorUnstableResponseTimeThreshold: '', errorUnstableThreshold: -1, failBuildIfNoResultFile: false, modeOfThreshold: false, modePerformancePerTestCase: true, modeThroughput: false, nthBuildNumber: 0, relativeFailedThresholdNegative: <object of type java.lang.Double>, relativeFailedThresholdPositive: <object of type java.lang.Double>, relativeUnstableThresholdNegative: <object of type java.lang.Double>, relativeUnstableThresholdPositive: <object of type java.lang.Double>, sourceDataFiles: "$WORKSPACE/artifacts/result.xml"
+        //see JENKINS-32650 and JENKINS-31967
+        performanceReport compareBuildPrevious: false, configType: '', errorFailedThreshold: -1, errorUnstableResponseTimeThreshold: '', errorUnstableThreshold: -1, failBuildIfNoResultFile: false, modeOfThreshold: false, modePerformancePerTestCase: true, modeThroughput: false, nthBuildNumber: 0, relativeFailedThresholdNegative: -1, relativeFailedThresholdPositive: -1, relativeUnstableThresholdNegative: -1, relativeUnstableThresholdPositive: -1, sourceDataFiles: "$WORKSPACE/artifacts/result.xml"
       }
     }
   }
