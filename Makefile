@@ -1,12 +1,10 @@
-include .env
-
 .PHONY: app
 
-default:
-	echo "Hello there!"
+env:
+	export TAURUS_ARTIFACTS_VOLUME=/Users/David/Sites/blazemeter-demo/artifacts
 
 network:
-	docker network create blazemeter-demo
+	docker network create blazemeter-demo || true
 
 app:
 	docker build \
@@ -24,7 +22,7 @@ bzt:
 	-f Dockerfile.taurus \
 	-t bzt . \
 	&& docker run \
-	-v /Users/David/Sites/blazemeter-demo/artifacts:/tmp/artifacts/ \
+	-v ${BZT_ARTIFACTS_VOLUME}:/tmp/artifacts/ \
 	--network=blazemeter-demo \
 	bzt \
 	/bzt-configs/the-test.yml -report
