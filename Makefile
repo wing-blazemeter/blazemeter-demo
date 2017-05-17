@@ -36,4 +36,5 @@ jenkins:
 	jenkins
 
 clean:
-	docker rm $$(docker stop $$(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true
+	docker rm $$(docker stop $$(docker ps -a -q --filter ancestor="blaze-app" --format="{{.ID}}")) || true \
+	&& docker ps -a -q | xargs docker rm -v || true
