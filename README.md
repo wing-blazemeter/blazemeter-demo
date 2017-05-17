@@ -8,7 +8,19 @@ Follow [this guide](https://coolestguidesontheplanet.com/get-apache-mysql-php-an
 Once complete, the app will be available at e.g. http://localhost/~David/blazemeter-demo/app/
 
 ## Docker Approach
-From the project directory, ``make app`` to run the app inside a Docker container at http://localhost:8888.
+From the project directory, run ``make network`` so that our containers can communicate with each other.
 
-# Install Taurus
-Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line.
+Then run ``make app`` to run the app inside a Docker container at http://localhost:8888.
+
+# Run Taurus
+Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line. Running from the command line allows for live visualization of performance test runs.
+
+Alternatively, you can ``make bzt`` to run Taurus inside a Docker container. Be sure to ``make app`` first.
+
+When finished, run ``make clean`` to stop the app and remove stopped containers.
+
+# CI/CD with Jenkins Pipeline
+1. Run Jenkins via ``make jenkins`` (be sure to ``make network`` first if you haven't done this already)
+2. Install the Performance Plugin (required) and the Blue Ocean Plugin (optional)
+3. Create a MultiBranch Pipeline that points to this repo
+4. Build! For more details, see ``Jenkinsfile`` in the project root directory.
