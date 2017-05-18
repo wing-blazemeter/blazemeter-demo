@@ -8,7 +8,7 @@ pipeline {
     }
     stage('Run Perf Tests') {
       steps {
-        sh 'make bzt'
+        sh 'make bzt-jenkins'
       }
     }
     stage('Publish Test Results') {

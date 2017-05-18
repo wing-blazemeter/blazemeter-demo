@@ -14,17 +14,25 @@ app:
 	--network=blazemeter-demo \
 	blaze-app
 
-#TODO add -v mapping to env
 bzt:
 	docker build \
 	-f Dockerfile.taurus \
 	-t bzt . \
 	&& docker run \
-	-v /Users/David/Sites/blazemeter-demo/artifacts:/tmp/artifacts/ \
+	-v $(PWD)/artifacts:/tmp/artifacts/ \
 	--network=blazemeter-demo \
 	bzt /bzt-configs/the-test.yml -report
 
 #TODO add -v mapping to env
+bzt-jenkins:
+	docker build \
+	-f Dockerfile.taurus \
+	-t bzt . \
+	&& docker run \
+	-v /Users/David/Sites/blazemeter-demo/jenkins_home/artifacts:/tmp/artifacts/ \
+	--network=blazemeter-demo \
+	bzt /bzt-configs/the-test.yml -report
+
 jenkins:
 	docker build \
 	-f Dockerfile.jenkins \
@@ -33,7 +41,6 @@ jenkins:
 	--name=jenkins \
 	-p 8080:8080 \
 	-v $(PWD)/jenkins_home:/var/jenkins_home \
-	-v /Users/David/Sites/blazemeter-demo/artifacts:/var/jenkins_home/artifacts \
 	-v /var/run/docker.sock:/var/run/docker.sock \
 	--network=blazemeter-demo \
 	jenkins
