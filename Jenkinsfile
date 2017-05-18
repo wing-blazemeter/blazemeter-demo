@@ -17,11 +17,11 @@ pipeline {
     stage('Generate .bzt-rc') {
       steps {
         sh """
-          cat > .bzt-rc << "EOF"
-          modules:
-            blazemeter:
-              token: $BLAZEMETER_TOKEN
-              EOF
+        cat > .bzt-rc << "EOF"
+        modules:
+          blazemeter:
+            token: $BLAZEMETER_TOKEN
+        EOF
         """
         sh 'cat .bzt-rc'
       }
