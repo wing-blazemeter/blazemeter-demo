@@ -1,5 +1,3 @@
-include .env
-
 .PHONY: app
 
 network:
@@ -25,7 +23,7 @@ bzt:
 	--network=blazemeter-demo \
 	bzt /bzt-configs/the-test.yml -report
 
-#TODO add -v mapping to env
+#TODO replace -v mapping
 bzt-jenkins:
 	docker build \
 	-f Dockerfile.taurus \
