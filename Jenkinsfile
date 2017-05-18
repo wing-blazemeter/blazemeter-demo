@@ -21,7 +21,7 @@ pipeline {
           modules:
             blazemeter:
               token: $BLAZEMETER_TOKEN
-          EOF
+              EOF
         """
         sh 'cat .bzt-rc'
       }
