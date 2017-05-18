@@ -1,3 +1,5 @@
+include .env
+
 .PHONY: app
 
 network:
