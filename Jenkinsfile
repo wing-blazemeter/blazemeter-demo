@@ -20,7 +20,7 @@ pipeline {
           cat <<EOF >.bzt-rc
           modules:
             blazemeter:
-              token: $BLAZEMETER_TOKEN EOF
+              token: $BLAZEMETER_TOKEN
         """
         sh 'cat .bzt-rc'
       }
