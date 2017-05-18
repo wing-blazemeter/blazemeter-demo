@@ -15,11 +15,13 @@ Then run ``make app`` to run the app inside a Docker container at http://localho
 # Run Taurus
 Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line. Running from the command line allows for live visualization of performance test runs.
 
-Alternatively, you can ``make bzt`` to run Taurus inside a Docker container. Be sure to ``make app`` first.
+You can ``make bzt`` to run Taurus inside a Docker container. Before you begin, create a ``.bzt-rc`` file as per the provided ``.bzt-rc.sample`` and add your Blazemeter token. Be sure to ``make app`` before you ``make bzt``.
 
 When finished, run ``make clean`` to stop the app and remove stopped containers.
 
 # CI/CD with Jenkins Pipeline
 1. Run Jenkins via ``make jenkins`` (be sure to ``make network`` first if you haven't done this already)
 2. Create a MultiBranch Pipeline that points to this repo
-3. Build! For more details, see ``Jenkinsfile`` in the project root directory.
+3. Add a "Secret Text" Credential to the MultiBranch Pipeline folder called ``blazemeter-token``.
+4. Modify the volume mapping under ``bzt-jenkins`` in the ``Makefile`` so that it's specific to your workstation.
+5. Build! For more details, see ``Jenkinsfile`` in the project root directory.
