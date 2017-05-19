@@ -9,10 +9,10 @@ execution:
 reporting:
 - module: final-stats
   dump-xml: /tmp/artifacts/results.xml
-- module: passfail
-  criteria:
-  - avg-rt of Reservation>2000ms for 10s, continue as non-failed #this is set low to force failure example. Raise it to 1000ms to succeed
-  - fail of Confirmation>20% for 10s, continue as non-failed
+#- module: passfail
+#  criteria:
+#  - avg-rt of Reservation>2000ms for 10s, continue as non-failed #this is set low to force failure example. Raise it to 1000ms to succeed
+#  - fail of Confirmation>20% for 10s, continue as non-failed
 
 scenarios:
   blazemeter-test:
