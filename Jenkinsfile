@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Run Perf Tests') {
+    stage('Run Taurus Perf Tests') {
       steps {
         bzt 'bzt-configs/the-test.yml'
       }
