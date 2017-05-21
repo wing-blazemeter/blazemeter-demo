@@ -11,6 +11,7 @@ reporting:
   report-name: Jenkins Taurus Demo
   test: Taurus Demo
   project: Taurus Tests Group
+  browser-open: none
 - module: passfail
   criteria:
   - avg-rt of Reservation>1500ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1500ms to succeed
