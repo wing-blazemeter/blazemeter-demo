@@ -19,7 +19,10 @@
 </head>
 
 <body>
-<?php include 'gtm_inc.php'; ?>
+<?php
+include 'gtm_inc.php';
+//sleep(2);
+?>
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
@@ -143,4 +146,3 @@
 
 </body>
 </html>
-
