@@ -7,6 +7,10 @@ execution:
 
 # put pass-fail criteria below in separate yml file if you wish
 reporting:
+- module: blazemeter
+  report-name: Jenkins Taurus Demo
+  test: Taurus Demo
+  project: Taurus Tests Group
 - module: passfail
   criteria:
   - avg-rt of Reservation>1500ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1500ms to succeed
