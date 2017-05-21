@@ -1,3 +1,4 @@
 modules:
   blazemeter:
     token: blahblahblahblah
+    browser-open: none #can be opened via external report link
