@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        echo "Deploying..."
+        echo 'Deploying...'
       }
     }
   }
@@ -22,6 +22,7 @@ pipeline {
       sh 'make clean'
     }
     unstable {
+      echo 'Unstable!'
       //send an email or post to HipChat/Slack..
     }
   }
