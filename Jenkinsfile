@@ -11,6 +11,11 @@ pipeline {
         bzt 'bzt-configs/the-test.yml'
       }
     }
+    stage('Deploy') {
+      steps {
+        echo "Deploying..."
+      }
+    }
   }
   post {
     always {
