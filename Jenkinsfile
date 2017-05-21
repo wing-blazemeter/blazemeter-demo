@@ -2,27 +2,11 @@ pipeline {
 
   agent any
 
-  environment {
-    BLAZEMETER_TOKEN = credentials('blazemeter-token')
-  }
-
   stages {
 
-    stage('Run App') {
+    stage('Run App Container') {
       steps {
         sh 'make app'
-      }
-    }
-
-    stage('Generate .bzt-rc from Credentials') {
-      steps {
-        sh """
-          cat <<EOF >.bzt-rc
-          modules:
-            blazemeter:
-              token: $BLAZEMETER_TOKEN
-        """
-        sh 'cat .bzt-rc'
       }
     }
 
