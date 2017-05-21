@@ -14,7 +14,7 @@ pipeline {
       }
     }
 
-    stage('Generate .bzt-rc') {
+    stage('Generate .bzt-rc from Credentials') {
       steps {
         sh """
           cat <<EOF >.bzt-rc
@@ -28,17 +28,10 @@ pipeline {
 
     stage('Run Perf Tests') {
       steps {
-        sh 'make bzt-jenkins'
+        bzt 'bzt-configs/the-test.yml'
       }
     }
 
-    stage('Publish Test Results') {
-      steps {
-        //see JENKINS-32650 and JENKINS-31967
-        performanceReport compareBuildPrevious: true, configType: '', errorFailedThreshold: -1, errorUnstableResponseTimeThreshold: 'Reservation:2000', errorUnstableThreshold: -1, failBuildIfNoResultFile: false, modeOfThreshold: false, modePerformancePerTestCase: true, modeThroughput: false, nthBuildNumber: 0, relativeFailedThresholdNegative: -1, relativeFailedThresholdPositive: -1, relativeUnstableThresholdNegative: -1, relativeUnstableThresholdPositive: -1, sourceDataFiles: "/var/jenkins_home/artifacts/results.xml"
-        //TODO add dir above to env
-      }
-    }
   }
 
   post {

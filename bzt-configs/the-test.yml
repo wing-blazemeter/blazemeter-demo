@@ -2,21 +2,19 @@
 execution:
   scenario: blazemeter-test
   concurrency: 10
-  ramp-up: 10s
-  hold-for: 30s
+  ramp-up: 1m
+  hold-for: 5m
 
 # put pass-fail criteria below in separate yml file if you wish
 reporting:
-- module: final-stats
-  dump-xml: /tmp/artifacts/results.xml
-#- module: passfail
-#  criteria:
-#  - avg-rt of Reservation>2000ms for 10s, continue as non-failed #this is set low to force failure example. Raise it to 1000ms to succeed
-#  - fail of Confirmation>20% for 10s, continue as non-failed
+- module: passfail
+  criteria:
+  - avg-rt of Reservation>1500ms for 10s, stop as failed #this is set low to force failure example. Raise it to 1500ms to succeed
+  - fail of Confirmation>50% for 10s, stop as failed
 
 scenarios:
   blazemeter-test:
-    default-address: "http://blaze-app:80"  # http request defaults scheme, domain, port
+    default-address: "http://www.blazedemo.com:80"  # http request defaults scheme, domain, port
     headers:
       Upgrade-Insecure-Requests: '1'
       User-Agent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36'
@@ -25,12 +23,23 @@ scenarios:
       - url: /
         method: GET
         label: 'Home'
+        assert:
+        - contains:
+          - .*Simple Travel Agency.*
+          subject: body
+          regexp: true
       - url: /reserve.php
         method: POST
         label: 'Reservation'
         body:
           fromPort: Portland
           toPort: New York
+        assert:
+        - contains:
+          - .*Flights from Portland to New York.*
+          subject: body
+          regexp: true
+
       - url: /purchase.php
         method: POST
         label: 'Purchase'
@@ -40,6 +49,12 @@ scenarios:
           fromPort: Portland
           price: '233.98'
           toPort: New York
+        assert:
+        - contains:
+          - .*Your flight from Portland to New York has been reserved.*
+          subject: body
+          regex: true
+
       - url: confirmation.php
         method: POST
         label: 'Confirmation'

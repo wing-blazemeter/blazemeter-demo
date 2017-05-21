@@ -42,6 +42,7 @@ jenkins:
 	-p 8080:8080 \
 	-v $(PWD)/jenkins_home:/var/jenkins_home \
 	-v /var/run/docker.sock:/var/run/docker.sock \
+	-v /usr/local/bin \
 	--network=blazemeter-demo \
 	jenkins
 
