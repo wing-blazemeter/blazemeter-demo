@@ -1,27 +1,32 @@
 # blazemeter-demo
-Simple App to test CI/CD with Blazemeter Taurus & Jenkins Pipeline
+Simple App to demonstrate CI/CD with Blazemeter Taurus & Jenkins Pipeline.
 
-# Run the App
-## Traditional Approach (OSX)
+Prerequisites: ``docker`` and ``make`` must be available on your workstation.
+
+# Install & Run the App
+## Traditional Approach - Optional
 Follow [this guide](https://coolestguidesontheplanet.com/get-apache-mysql-php-and-phpmyadmin-working-on-macos-sierra/) to set up Apache, MySql, and PHP (AMP stack).
 
 Once complete, the app will be available at e.g. http://localhost/~David/blazemeter-demo/app/.
 
-## Docker Approach
-From the project directory, run ``make network`` so that our containers can communicate with each other.
+## Docker Approach - Required
+Run ``make network`` once. This is required for the app to run, and also for testing the containerized version of Taurus.
 
-Then run ``make app`` to run the app inside a Docker container at http://localhost:8888.
+Simply run ``make app`` to run the app inside a Docker container at http://localhost:8888.
 
-# Run Taurus
+# Install & Run Taurus
+## Traditional Approach - Required
 Follow [this guide](https://gettaurus.org/docs/Installation/) to install Taurus/bzt on the OSX command line. Running from the command line allows for live visualization of performance test runs.
 
+Create an account on http://blazemeter.com and get your API token. This is used to publish test results to your personal account and view trends instead of uploading tests anonymously. To install your token into Taurus, create a ``.bzt-rc`` file as per the provided ``.bzt-rc.sample`` and place it at e.g. ``/Users/David/.bzt-rc``.
+
+## Docker Approach - Optional
 You can ``make bzt`` to run Taurus inside a Docker container. Before you begin, create a ``.bzt-rc`` file as per the provided ``.bzt-rc.sample`` and add your Blazemeter token. Be sure to ``make app`` before you ``make bzt``.
 
 When finished, run ``make clean`` to stop the app and remove stopped containers.
 
 # CI/CD with Jenkins Pipeline
-1. Run Jenkins via ``make jenkins`` (be sure to ``make network`` first if you haven't done this already).
-2. Create a MultiBranch Pipeline that points to this repo.
-3. Add a "Secret Text" Credential to the MultiBranch Pipeline folder called ``blazemeter-token``.
-4. Modify the volume mapping under ``bzt-jenkins`` in the ``Makefile`` so that it's specific to your workstation.
-5. Build! For more details, see ``Jenkinsfile`` in the project root directory.
+1. Download and install Jenkins from http://jenkins-ci.org.
+2. Install the [Performance Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Performance+Plugin) and [Blue Ocean Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Blue+Ocean+Plugin).
+3. In Blue Ocean, create a New Pipeline that points to this repo. You will need to add your GitHub credential.
+4. Build! For more details, see ``Jenkinsfile`` in the project root directory.
