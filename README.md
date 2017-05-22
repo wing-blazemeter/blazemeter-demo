@@ -30,3 +30,6 @@ When finished, run ``make clean`` to stop the app and remove stopped containers.
 2. Install the [Performance Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Performance+Plugin) and [Blue Ocean Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Blue+Ocean+Plugin).
 3. In Blue Ocean, create a New Pipeline that points to this repo. You will need to add your GitHub credential.
 4. Build! For more details, see ``Jenkinsfile`` in the project root directory.
+
+# TODO
+- Add Lockable Resources Plugin to prevent builds on multiple branches from ``make``-ing ``app`` at the same time - it causes naming conflicts. As a result, the first and only first build(s) may fail. Try again or check docker cleanup.
